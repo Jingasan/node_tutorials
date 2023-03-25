@@ -1,0 +1,21 @@
+{
+  "name": "04_aws_s3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "s3rver -d s3rver_data"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "s3rver": "^3.7.1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.279.0",
+    "@aws-sdk/s3-request-presigner": "^3.279.0",
+    "@types/node": "^18.14.2"
+  }
+}
