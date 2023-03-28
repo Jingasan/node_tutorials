@@ -15,13 +15,13 @@ const buildSetting = {
 };
 
 // ES Modules向けのビルド
-esbuild.build({
+await esbuild.build({
   format: "esm", // 出力フォーマットの指定(デフォルト：iife)
   // cjs: CommonJSモジュールとして出力する（Node.js向け）
   // esm: ECMAScriptモジュールとして出力する（Node.js向け）
   // iife: 即時関数として出力する（ブラウザ向け）
   // esm-browser: ブラウザ用のECMAScriptモジュールとして出力する（ブラウザ向け）
-  target: ["ES6"], // 出力するJSのバージョンや実行環境の指定
+  target: ["ES2022"], // 出力するJSのバージョンや実行環境の指定
   // 指定しない場合はesbuildが自動的に実行環境に応じたコードに変換する。
   // esnext: 最新のECMAScriptの仕様に準拠したコードを生成
   // es2022, ..., es2015(ES6): ECMAScriptのバージョンの指定
@@ -36,9 +36,9 @@ esbuild.build({
 });
 
 // CommonJS向けのビルド
-esbuild.build({
+await esbuild.build({
   format: "cjs",
-  target: ["ES6"], // 出力するJSのバージョンや実行環境の指定
+  target: ["ES2022"], // 出力するJSのバージョンや実行環境の指定
   // ECMAScript 2015 (ES6)に準拠
   outfile: "./dist/index.cjs.js", // 出力ビルドファイル名
   entryPoints: buildSetting.entryPoints,
