@@ -1,17 +1,17 @@
-import { chain } from "stream-chain";
-import { parser } from "stream-json";
-import { pick } from "stream-json/filters/Pick";
-import { streamArray } from "stream-json/streamers/StreamArray";
+import StreamChain from "stream-chain";
+import StreamJSON from "stream-json";
+import Pick from "stream-json/filters/Pick.js";
+import StreamArray from "stream-json/streamers/StreamArray.js";
 import * as fs from "fs";
 
 // GeoJSON FeaturesCollectionのStream読み込み
 function readGeoJSONStream() {
   const geojsonFilename = process.argv[2];
-  const pipeline = chain([
+  const pipeline = StreamChain.chain([
     fs.createReadStream(geojsonFilename),
-    parser(),
-    pick({ filter: "features" }),
-    streamArray(),
+    StreamJSON.parser(),
+    Pick.pick({ filter: "features" }),
+    StreamArray.streamArray(),
     (data) => {
       const value = data.value;
       console.log(JSON.stringify(value.geometry.coordinates));
