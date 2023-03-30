@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import StreamJSON from "stream-json";
 import Pick from "stream-json/filters/Pick.js";
 import StreamArray from "stream-json/streamers/StreamArray.js";
@@ -15,10 +16,21 @@ const streamReader = async (streamArray: StreamArray) => {
     console.log(sa);
   }
 };
-const streamArray = fs
+
+// ローカルのGeoJSONからの読み込み
+const localStreamArray = fs
   .createReadStream(process.argv[2])
   .pipe(StreamJSON.parser())
   .pipe(Pick.pick({ filter: "features" }))
   .pipe(StreamArray.streamArray());
-await streamReader(streamArray);
-console.log("OK");
+await streamReader(localStreamArray);
+
+// Web上のGeoJSONからの読み込み
+const response = await fetch(
+  "https://pkgstore.datahub.io/examples/geojson-tutorial/example/data/db696b3bf628d9a273ca9907adcea5c9/example.geojson"
+);
+const httpStreamArray = response.body
+  ?.pipe(StreamJSON.parser())
+  .pipe(Pick.pick({ filter: "features" }))
+  .pipe(StreamArray.streamArray());
+if (httpStreamArray) await streamReader(httpStreamArray);
