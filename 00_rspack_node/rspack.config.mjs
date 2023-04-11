@@ -10,7 +10,7 @@ export default () => {
     },
     target: "node",
     output: {
-      filename: "[name].js",
+      filename: "index.js",
       path: path.resolve(__dirname, "dist"),
     },
   };
