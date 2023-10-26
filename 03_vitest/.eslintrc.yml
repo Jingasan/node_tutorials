@@ -1,17 +1,19 @@
 env:
   node: true
   es2022: true
+plugins:
+  - "@typescript-eslint"
+  - vitest
 extends:
   - eslint:recommended
   - prettier # Prettierと競合しないようにする
   - plugin:@typescript-eslint/recommended
   - plugin:@typescript-eslint/recommended-requiring-type-checking
+  - plugin:vitest/recommended
 parser: "@typescript-eslint/parser" # TypeScriptコードを扱えるようにする設定
 parserOptions:
   sourceType: module
   project: "./tsconfig.json"
-plugins:
-  - "@typescript-eslint"
 rules: # 独自ルール
   "@typescript-eslint/no-unsafe-argument": "warn"
   "@typescript-eslint/no-unsafe-assignment": "warn"
