@@ -1,0 +1,26 @@
+{
+  "name": "vitest",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "test": "vitest",
+    "build": "tsc",
+    "dev": "tsx src/index.mts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.8.9",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  }
+}

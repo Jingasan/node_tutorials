@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["./src/index.mts"],
+  "out": "docs",
+  "excludeExternals": true,
+  "exclude": [],
+  "tsconfig": "tsconfig.json"
+}
