@@ -1,3 +1,4 @@
+import test from "node:test";
 import { z, ZodError } from "zod";
 
 const personalScheme = z.object({
@@ -16,12 +17,21 @@ const personalScheme = z.object({
     .max(20, { message: "JOB_TOO_LONG" })
     .regex(/[^\\/:*?"<>|]/, { message: "INVALID_JOB" })
     .optional(),
+  testNumber: z.number().refine(
+    (t) => {
+      if (0 <= t && t < 30) return true;
+      if (60 < t && t <= 100) return true;
+      return false;
+    },
+    { message: "INVALID_NUMBER" }
+  ),
 });
 type Personal = z.infer<typeof personalScheme>;
 
 const p: Personal = {
   name: "Tarooooooooooooooooooooooooooooooooooooo",
   email: "info",
+  testNumber: 50,
 };
 console.log("[Variable]");
 console.log(p);
