@@ -32,20 +32,35 @@ const personalScheme = z.object({
 });
 type Personal = z.infer<typeof personalScheme>;
 
-const p: Personal = {
+/**
+ * NGな入力例
+ */
+const ng: Personal = {
   name: "Tarooooooooooooooooooooooooooooooooooooo",
   email: "info",
   testNumber: 50.5,
 };
 console.log("[Variable]");
-console.log(p);
+console.log(ng);
 
 console.log("\n[Parse]");
 try {
-  personalScheme.parse(p);
+  personalScheme.parse(ng);
 } catch (e) {
   if (e instanceof ZodError) console.error(e.errors);
 }
 
 console.log("\n[SafeParse]");
-console.log(personalScheme.safeParse(p).error.errors);
+console.log(personalScheme.safeParse(ng).error.errors);
+
+/**
+ * OKな入力例
+ */
+const ok: Personal = {
+  name: "Taro",
+  email: "info@gmail.com",
+  testNumber: 0,
+  age: 20,
+};
+console.log(personalScheme.parse(ok));
+console.log(personalScheme.safeParse(ok));
